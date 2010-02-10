@@ -1,0 +1,10 @@
+
+war/*
+target/*
+local_repo/*
+Docs/~*
+.class
+.jar
+.war
+.gz
+.symbolMap
