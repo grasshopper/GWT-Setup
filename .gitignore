@@ -1,10 +1,17 @@
 
-war/*
-target/*
-local_repo/*
-Docs/~*
 .class
-.jar
-.war
+.classpath
 .gz
+.jar
+.metadata/*
+.project
+.settings/*
 .symbolMap
+.war
+com.coolisland.Application.launch
+Docs/~*
+local_repo/*
+target/*
+tomcat/*
+war/*
+war/*

@@ -5,37 +5,35 @@ rem setup the environment variables
 rem
 call setenv.bat
 
-rem
-rem add the JAVA_HOME to the path
-rem
-set OLD_PATH=%PATH%
-set PATH=%JAVA_HOME%\bin;%PATH%
-
 
 :BUILD
-pushd ..
+REM ****************** Building Code ******************
+pushd ..\
+
 rem
 rem run maven
 rem
-rem call mvn -e clean gwt:clean gwt:compile gwt:eclipse
-rem echo +++++++++++++
-rem pause
-
-call mvn -e clean gwt:clean gwt:compile gwt:eclipse gwt:run
-echo +++++++++++++
-pause
-
-call mvn -e clean gwt:clean gwt:compile gwt:eclipse gwt:run gwt:test
-echo +++++++++++++
-pause
-
-call mvn -e clean gwt:clean gwt:compile gwt:eclipse gwt:run gwt:test -DdownloadSources=true -DdownloadJavadocs=true
-echo +++++++++++++
-pause
-
-
-rem call mvn -e clean install eclipse:clean eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true
+call mvn -e clean -Dmaven.repo.local=%MAVEN_REPO_LOCAL%
 if %ERRORLEVEL% NEQ 0 goto FAILED
+echo +++++++++++++
+pause
+
+call mvn %* -e clean install eclipse:clean eclipse:eclipse -Dmaven.repo.local=%MAVEN_REPO_LOCAL% -DdownloadSources=true -DdownloadJavadocs=true
+if %ERRORLEVEL% NEQ 0 goto FAILED
+echo +++++++++++++
+pause
+
+call mvn %* -e gwt:clean gwt:compile gwt:eclipse -Dmaven.repo.local=%MAVEN_REPO_LOCAL% -DdownloadSources=true -DdownloadJavadocs=true
+if %ERRORLEVEL% NEQ 0 goto FAILED
+echo +++++++++++++
+pause
+
+
+REM
+REM call mvn -e gwt:test gwt:run -Dmaven.repo.local=%MAVEN_REPO_LOCAL%
+if %ERRORLEVEL% NEQ 0 goto FAILED
+echo +++++++++++++
+pause
 
 popd
 goto END
@@ -50,7 +48,6 @@ goto END
 
 :END
 rem
-rem return the path to its old value
+rem Restore the PATH if we backed it up above
 rem
-set PATH=%OLD_PATH%
-
+@if defined CMVN_OLD_PATH set PATH=%CMVN_OLD_PATH%
