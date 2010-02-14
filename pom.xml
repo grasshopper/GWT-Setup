@@ -22,6 +22,9 @@
 
 	  <!-- maven compiler version to use -->
       <maven.compiler.version>2.0.2</maven.compiler.version>
+
+	  <!-- maven clean plugin version to use -->
+	  <maven.clean.version>2.4</maven.clean.version>
 	  
       <!--  tell the compiler we can use 1.5 -->
       <maven.compiler.source>1.5</maven.compiler.source>
@@ -95,6 +98,45 @@
             <target>${maven.compiler.target}</target>
           </configuration>
       </plugin>
+
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-clean-plugin</artifactId>
+          <version>${maven.clean.version}</version>
+          <configuration>
+		    <verbose>true</verbose>
+			<filesets>
+				<fileset>
+					<directory>${basedir}</directory>
+					<includes>
+						<include>com.coolisland.Application.launch</include>
+					</includes>
+					<excludes>
+					  <!--	<exclude>WEB-INF/*.tld</exclude>  -->
+					</excludes>
+				</fileset>
+			
+				<fileset>
+					<directory>${basedir}/tomcat</directory>
+					<includes>
+						<include>**/**</include>
+						<!-- <include>conf/*.*</include>	-->
+						<!-- <include>webapps/*</include>	-->
+						<!-- <include>work/*</include>		-->
+					</includes>
+				</fileset>
+
+				<fileset>
+					<directory>${basedir}/war</directory>
+					<includes>
+						<include>**/**</include>
+					</includes>
+				</fileset>
+			</filesets>
+			
+          </configuration>
+      </plugin>
+	  
     </plugins>
   </build>
 

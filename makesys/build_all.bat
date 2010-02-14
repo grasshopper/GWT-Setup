@@ -13,15 +13,20 @@ pushd ..\
 rem
 rem run maven
 rem
-call mvn -e clean -Dmaven.repo.local=%MAVEN_REPO_LOCAL%
-if %ERRORLEVEL% NEQ 0 goto FAILED
-echo +++++++++++++
-pause
+rem testing the clean target
+rem call mvn -e clean -Dmaven.repo.local=%MAVEN_REPO_LOCAL%
+rem if %ERRORLEVEL% NEQ 0 goto FAILED
+rem echo +++++++++++++
+rem pause
+
+
 
 call mvn %* -e clean install eclipse:clean eclipse:eclipse -Dmaven.repo.local=%MAVEN_REPO_LOCAL% -DdownloadSources=true -DdownloadJavadocs=true
 if %ERRORLEVEL% NEQ 0 goto FAILED
 echo +++++++++++++
 pause
+
+
 
 call mvn %* -e gwt:clean gwt:compile gwt:eclipse -Dmaven.repo.local=%MAVEN_REPO_LOCAL% -DdownloadSources=true -DdownloadJavadocs=true
 if %ERRORLEVEL% NEQ 0 goto FAILED
