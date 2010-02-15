@@ -1,6 +1,9 @@
-@echo off
+@echo on
 
-set JAVA_HOME=C:\Devtools\Java\jdk1.6.0_16
+
+REM use 32 bit java
+REM do not use quotes around the path as that causes maven issues
+set JAVA_HOME=C:\Program Files (x86)\Java\jdk1.6.0_17
 set APP_ENGINE_VERSION=1.3.0
 set APP_ENGINE_LIB=C:\Devtools\eclipse-64bit\plugins\com.google.appengine.eclipse.sdkbundle.1.3.0_1.3.0.v200912141120\appengine-java-sdk-%APP_ENGINE_VERSION%\lib
 

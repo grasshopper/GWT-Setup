@@ -21,21 +21,21 @@ rem pause
 
 
 
-call mvn %* -e clean install eclipse:clean eclipse:eclipse -Dmaven.repo.local=%MAVEN_REPO_LOCAL% -DdownloadSources=true -DdownloadJavadocs=true
+call mvn %* -e clean install eclipse:clean eclipse:eclipse -DskipTest -Dmaven.repo.local=%MAVEN_REPO_LOCAL%
 if %ERRORLEVEL% NEQ 0 goto FAILED
 echo +++++++++++++
 pause
 
 
 
-call mvn %* -e gwt:clean gwt:compile gwt:eclipse -Dmaven.repo.local=%MAVEN_REPO_LOCAL% -DdownloadSources=true -DdownloadJavadocs=true
+call mvn %* -e gwt:clean gwt:compile gwt:eclipse  -DskipTest -Dmaven.repo.local=%MAVEN_REPO_LOCAL% -DdownloadSources=true -DdownloadJavadocs=true
 if %ERRORLEVEL% NEQ 0 goto FAILED
 echo +++++++++++++
 pause
 
 
-REM
-REM call mvn -e gwt:test gwt:run -Dmaven.repo.local=%MAVEN_REPO_LOCAL%
+REM test and run the application
+call mvn -e gwt:test gwt:run -Dmaven.repo.local=%MAVEN_REPO_LOCAL%
 if %ERRORLEVEL% NEQ 0 goto FAILED
 echo +++++++++++++
 pause

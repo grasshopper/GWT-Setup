@@ -8,7 +8,7 @@
   <artifactId>gwtSetup</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>gwt-maven-archetype-project</name>
+  <name>gwt-maven-setup-project</name>
 
   <properties>
       <!-- convenience to define GWT version in one place -->
@@ -26,7 +26,7 @@
 	  <!-- maven clean plugin version to use -->
 	  <maven.clean.version>2.4</maven.clean.version>
 	  
-      <!--  tell the compiler we can use 1.5 -->
+      <!--  tell the compiler to use 1.5 -->
       <maven.compiler.source>1.5</maven.compiler.source>
       <maven.compiler.target>1.5</maven.compiler.target>
   </properties>
@@ -93,10 +93,29 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven.compiler.version}</version>
+
+		  <inherited>true</inherited>
+
           <configuration>
+			<verbose>true</verbose>
+			
+			<!-- fork must be true to specify our path to compiler -->
+			<fork>true</fork>
+			
+			<!-- specify the path to the Jave verstion to use -->
+			<executable>"C:/Program Files (x86)/Java/jdk1.6.0_17/bin/javac"</executable>
+
+			<!-- specify the java compiler version to use -->
+			<compilerVersion>1.6.0_17</compilerVersion>
+			
             <source>${maven.compiler.source}</source>
             <target>${maven.compiler.target}</target>
+			
+			<classpathContainers>
+				<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_17-32bit</classpathContainer>
+			</classpathContainers>
           </configuration>
+		  
       </plugin>
 
       <plugin>
@@ -115,7 +134,6 @@
 					  <!--	<exclude>WEB-INF/*.tld</exclude>  -->
 					</excludes>
 				</fileset>
-			
 				<fileset>
 					<directory>${basedir}/tomcat</directory>
 					<includes>
@@ -125,7 +143,6 @@
 						<!-- <include>work/*</include>		-->
 					</includes>
 				</fileset>
-
 				<fileset>
 					<directory>${basedir}/war</directory>
 					<includes>
@@ -133,7 +150,6 @@
 					</includes>
 				</fileset>
 			</filesets>
-			
           </configuration>
       </plugin>
 	  
