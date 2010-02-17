@@ -17,7 +17,7 @@ public class Application
    */
   public void onModuleLoad()
   {
-     final Label label = new Label ( "gwt-maven-plugin Archetype :: Project com.coolisland.gwtSetup" );
+     final Label label = new Label ( "We made it to com.coolisland.client.Application.onModuleLoad()" );
      RootPanel.get().add( label );
   }
 }
