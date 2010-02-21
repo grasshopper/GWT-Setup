@@ -1,20 +1,20 @@
 package com.coolisland.client.calculator;
 
+import com.coolisland.client.utils.CalculatorDisplay;
 import com.coolisland.client.utils.Log;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class Calculator extends Composite {
 
 	DockPanel dockPanel = new DockPanel();
-	Grid controlsPanel = new Grid(5, 2);
+	Grid controlsPanel = new Grid(4, 2);
 	Grid numbersPanel = new Grid(4, 3);
+	private final CalculatorDisplay calculatorDisplay;
 
 	private static final NumberFormat nf = NumberFormat.getDecimalFormat()
 			.getFormat("###0.#####;-###0.#####");
@@ -22,8 +22,6 @@ public class Calculator extends Composite {
 	private double lastNum = 0;
 	private ControlAction lastAction = null;
 	boolean clearDisplayOnNextDigit = false;
-	private final TextBox inputBox;
-	private final TextArea ticker;
 
 	/**
 	 * 
@@ -33,19 +31,14 @@ public class Calculator extends Composite {
 		initNumberPad();
 		initControlPad();
 
+		calculatorDisplay = new CalculatorDisplay("");
+		dockPanel.add(calculatorDisplay, DockPanel.NORTH);
+
 		dockPanel.add(numbersPanel, DockPanel.CENTER);
 		dockPanel.add(controlsPanel, DockPanel.EAST);
 
-		inputBox = new TextBox();
-		inputBox.addStyleName("Resultbox");
-		dockPanel.add(inputBox, DockPanel.NORTH);
-
-		ticker = new TextArea();
-		ticker.setSize("7em", "140px");
-
 		HorizontalPanel mainP = new HorizontalPanel();
 		mainP.add(dockPanel);
-		mainP.add(ticker);
 		initWidget(mainP);
 
 		setResult(0);
@@ -84,7 +77,7 @@ public class Calculator extends Composite {
 		};
 		Widget multiplyControlButtonWidget = new ControlButton(this,
 				multiplyControlButtonAction);
-		controlsPanel.setWidget(2, 0, multiplyControlButtonWidget);
+		controlsPanel.setWidget(1, 0, multiplyControlButtonWidget);
 	}
 
 	/**
@@ -100,7 +93,7 @@ public class Calculator extends Composite {
 		};
 		Widget divideControlButtonWidget = new ControlButton(this,
 				divideControlButtonAction);
-		controlsPanel.setWidget(2, 1, divideControlButtonWidget);
+		controlsPanel.setWidget(1, 1, divideControlButtonWidget);
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class Calculator extends Composite {
 		};
 		Widget plusControlButtonWidget = new ControlButton(this,
 				plusControlButtonAction);
-		controlsPanel.setWidget(3, 0, plusControlButtonWidget);
+		controlsPanel.setWidget(2, 0, plusControlButtonWidget);
 	}
 
 	/**
@@ -132,7 +125,7 @@ public class Calculator extends Composite {
 		};
 		Widget minusControlButtonWidget = new ControlButton(this,
 				minusControlButtonAction);
-		controlsPanel.setWidget(3, 1, minusControlButtonWidget);
+		controlsPanel.setWidget(2, 1, minusControlButtonWidget);
 	}
 
 	/**
@@ -157,7 +150,7 @@ public class Calculator extends Composite {
 		};
 		Widget equalControlButtonWidget = new ControlButton(this,
 				equalControlButtonAction);
-		controlsPanel.setWidget(4, 0, equalControlButtonWidget);
+		controlsPanel.setWidget(3, 0, equalControlButtonWidget);
 	}
 
 	/**
@@ -198,7 +191,7 @@ public class Calculator extends Composite {
 		};
 		Widget backspaceControlButtonWidget = new ControlButton(this,
 				backspaceControlButtonAction);
-		controlsPanel.setWidget(1, 1, backspaceControlButtonWidget);
+		controlsPanel.setWidget(0, 1, backspaceControlButtonWidget);
 	}
 
 	/**
@@ -221,7 +214,7 @@ public class Calculator extends Composite {
 		};
 		Widget clearControlButtonWidget = new ControlButton(this,
 				clearControlButtonAction);
-		controlsPanel.setWidget(1, 0, clearControlButtonWidget);
+		controlsPanel.setWidget(0, 0, clearControlButtonWidget);
 	}
 
 	/**
@@ -291,7 +284,7 @@ public class Calculator extends Composite {
 			displayResult = nf.format(result);
 		}
 
-		this.inputBox.setText(displayResult);
+		this.calculatorDisplay.setText(displayResult);
 	}
 
 	/**
@@ -309,7 +302,7 @@ public class Calculator extends Composite {
 	 * @return
 	 */
 	private double getCurrentNum() {
-		String current = inputBox.getText();
+		String current = calculatorDisplay.getText();
 		double currentNum = 0;
 		try {
 			currentNum = Double.valueOf(current).doubleValue();
@@ -344,10 +337,10 @@ public class Calculator extends Composite {
 	 */
 	public void digitAction(String value) {
 		if (isDoClearOnNextDigit()) {
-			inputBox.setText("");
+			calculatorDisplay.setText("");
 			setDoClearOnNextDigit(false);
 		}
 
-		inputBox.setText(inputBox.getText() + value);
+		calculatorDisplay.setText(calculatorDisplay.getText() + value);
 	}
 }

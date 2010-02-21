@@ -16,11 +16,20 @@ img {
 
 
 .gwt-Button {
-	background-color: #DDDDDD;
 	color: black;
 }
 
 .gwt-Button-CalculatorButton {
+	background-color: #DDDDDD;
+	color: black;
 	border: 4px solid #D8E3FD;
 	border-style: ridge;
 }
+
+/** used by the calculator's display control */
+.gwt-TextBox-CalculatorDisplay {
+	color: 00FF00;
+	text-align: right;
+	font-size: 150%;
+	width: 100%	
+	}

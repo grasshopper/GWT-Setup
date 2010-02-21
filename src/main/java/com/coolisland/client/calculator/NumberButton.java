@@ -1,5 +1,6 @@
 package com.coolisland.client.calculator;
 
+import com.coolisland.client.controls.CalculatorButton;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Widget;
 

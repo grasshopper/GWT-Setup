@@ -1,4 +1,4 @@
-package com.coolisland.client.calculator;
+package com.coolisland.client.controls;
 
 import com.google.gwt.user.client.ui.Button;
 
