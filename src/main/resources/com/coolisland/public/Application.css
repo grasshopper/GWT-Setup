@@ -12,3 +12,15 @@ button {
 img {
   margin-top: 20px;
 }
+
+
+
+.gwt-Button {
+	background-color: #DDDDDD;
+	color: black;
+}
+
+.gwt-Button-CalculatorButton {
+	border: 4px solid #D8E3FD;
+	border-style: ridge;
+}

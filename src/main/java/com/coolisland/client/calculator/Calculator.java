@@ -1,5 +1,6 @@
 package com.coolisland.client.calculator;
 
+import com.coolisland.client.utils.Log;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
@@ -12,8 +13,8 @@ import com.google.gwt.user.client.ui.Widget;
 public class Calculator extends Composite {
 
 	DockPanel dockPanel = new DockPanel();
-	Grid controls = new Grid(5, 2);
-	Grid numbersP = new Grid(4, 3);
+	Grid controlsPanel = new Grid(5, 2);
+	Grid numbersPanel = new Grid(4, 3);
 
 	private static final NumberFormat nf = NumberFormat.getDecimalFormat()
 			.getFormat("###0.#####;-###0.#####");
@@ -32,8 +33,8 @@ public class Calculator extends Composite {
 		initNumberPad();
 		initControlPad();
 
-		dockPanel.add(numbersP, DockPanel.CENTER);
-		dockPanel.add(controls, DockPanel.EAST);
+		dockPanel.add(numbersPanel, DockPanel.CENTER);
+		dockPanel.add(controlsPanel, DockPanel.EAST);
 
 		inputBox = new TextBox();
 		inputBox.addStyleName("Resultbox");
@@ -50,23 +51,62 @@ public class Calculator extends Composite {
 		setResult(0);
 	}
 
+	/**
+	 * Initialize the number key pad panel
+	 */
 	private void initNumberPad() {
 		/*
 		 * Initialze the 1 through 9 buttons
 		 */
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 3; col++) {
-				numbersP.setWidget(row, col, new NumberButton(this, row * 3
+				numbersPanel.setWidget(row, col, new NumberButton(this, row * 3
 						+ col + 1));
 			}
 		}
+
+		/*
+		 * add the 0 button
+		 */
+		numbersPanel.setWidget(3, 0, new NumberButton(this, 0));
 	}
 
-	private void initControlPad() {
-		/*
-		 * Initialize the control buttons
-		 */
-		// add the + button to the list of controls
+	/**
+	 * add the * button to the list of controls
+	 */
+	private void addMultiplyButton() {
+		ControlAction multiplyControlButtonAction = new ControlAction(this, "x") {
+			@Override
+			public double performAction(ControlAction lastAction,
+					double previous, double current) {
+				return previous * current;
+			}
+		};
+		Widget multiplyControlButtonWidget = new ControlButton(this,
+				multiplyControlButtonAction);
+		controlsPanel.setWidget(2, 0, multiplyControlButtonWidget);
+	}
+
+	/**
+	 * add the / button to the list of controls
+	 */
+	private void addDivisionButton() {
+		ControlAction divideControlButtonAction = new ControlAction(this, "/") {
+			@Override
+			public double performAction(ControlAction lastAction,
+					double previous, double current) {
+				return previous / current;
+			}
+		};
+		Widget divideControlButtonWidget = new ControlButton(this,
+				divideControlButtonAction);
+		controlsPanel.setWidget(2, 1, divideControlButtonWidget);
+	}
+
+	/**
+	 * add the + button to the list of controls
+	 */
+	private void addPlusButton() {
 		ControlAction plusControlButtonAction = new ControlAction(this, "+") {
 			@Override
 			public double performAction(ControlAction lastAction,
@@ -76,9 +116,29 @@ public class Calculator extends Composite {
 		};
 		Widget plusControlButtonWidget = new ControlButton(this,
 				plusControlButtonAction);
-		controls.setWidget(3, 0, plusControlButtonWidget);
+		controlsPanel.setWidget(3, 0, plusControlButtonWidget);
+	}
 
-		// add the = button to the list of controls
+	/**
+	 * add the - button to the list of controls
+	 */
+	private void addMinusButton() {
+		ControlAction minusControlButtonAction = new ControlAction(this, "-") {
+			@Override
+			public double performAction(ControlAction lastAction,
+					double previous, double current) {
+				return previous - current;
+			}
+		};
+		Widget minusControlButtonWidget = new ControlButton(this,
+				minusControlButtonAction);
+		controlsPanel.setWidget(3, 1, minusControlButtonWidget);
+	}
+
+	/**
+	 * add the = button to the list of controls
+	 */
+	private void addEqualButton() {
 		ControlAction equalControlButtonAction = new ControlAction(this, "=") {
 			@Override
 			public boolean isMultiArg() {
@@ -97,9 +157,13 @@ public class Calculator extends Composite {
 		};
 		Widget equalControlButtonWidget = new ControlButton(this,
 				equalControlButtonAction);
-		controls.setWidget(3, 1, equalControlButtonWidget);
+		controlsPanel.setWidget(4, 0, equalControlButtonWidget);
+	}
 
-		// add the backspace button to the list of controls
+	/**
+	 * add the backspace button to the list of controls
+	 */
+	private void addBackSpaceButton() {
 		ControlAction backspaceControlButtonAction = new ControlAction(this,
 				"bksp") {
 			@Override
@@ -134,7 +198,59 @@ public class Calculator extends Composite {
 		};
 		Widget backspaceControlButtonWidget = new ControlButton(this,
 				backspaceControlButtonAction);
-		controls.setWidget(3, 1, backspaceControlButtonWidget);
+		controlsPanel.setWidget(1, 1, backspaceControlButtonWidget);
+	}
+
+	/**
+	 * add the clear button to the list of controls
+	 */
+	private void addClearButton() {
+		ControlAction clearControlButtonAction = new ControlAction(this,
+				"clear") {
+			@Override
+			public boolean isMultiArg() {
+				return false;
+			}
+
+			@Override
+			public double performAction(ControlAction lastAction,
+					double previous, double current) {
+				String currentValue = "0";
+				return Double.parseDouble(currentValue);
+			}
+		};
+		Widget clearControlButtonWidget = new ControlButton(this,
+				clearControlButtonAction);
+		controlsPanel.setWidget(1, 0, clearControlButtonWidget);
+	}
+
+	/**
+	 * Initialize the control buttons on the calculator
+	 */
+	private void initControlPad() {
+		/*
+		 * Initialize the control buttons
+		 */
+		// add the clear button to the list of controls
+		addClearButton();
+
+		// add the backspace button to the list of controls
+		addBackSpaceButton();
+
+		// add the multiply button
+		addMultiplyButton();
+
+		// add the divide button
+		addDivisionButton();
+
+		// add the + button to the list of controls
+		addPlusButton();
+
+		// add the minus button
+		addMinusButton();
+
+		// add the = button to the list of controls
+		addEqualButton();
 	}
 
 	/**
@@ -165,7 +281,17 @@ public class Calculator extends Composite {
 	}
 
 	private void setResult(double result) {
-		this.inputBox.setText(nf.format(result));
+		String displayResult;
+
+		Log.debug(this.getClass().getName() + ".setResult() result: " + result);
+
+		if (result > Long.MAX_VALUE || result < Long.MIN_VALUE) {
+			displayResult = "ERROR";
+		} else {
+			displayResult = nf.format(result);
+		}
+
+		this.inputBox.setText(displayResult);
 	}
 
 	/**

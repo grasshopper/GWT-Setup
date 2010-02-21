@@ -1,6 +1,7 @@
 package com.coolisland.client;
 
 import com.coolisland.client.calculator.Calculator;
+import com.coolisland.client.utils.Log;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -17,16 +18,12 @@ public class Application implements EntryPoint {
 	public void onModuleLoad() {
 		initialize();
 	}
-	
-	
+
 	private void initialize() {
 		try {
 			// display debug message
-			String msg = "We made it to com.coolisland.client.Application.onModuleLoad()";
-			Label debugLabel = new Label(msg);
-			VerticalPanel debugPanel = new VerticalPanel();
-			debugPanel.add(debugLabel);
-			RootPanel.get("debug").add(debugPanel);
+			Log
+					.debug("We made it to com.coolisland.client.Application.onModuleLoad()");
 
 			// display the calculator
 			Calculator calc = new Calculator();
@@ -49,11 +46,7 @@ public class Application implements EntryPoint {
 			RootPanel.get().add(panel);
 		}
 
-		
-		String msg = "outside of the try/catch block.....";
-		Label debugLabel = new Label(msg);
-		VerticalPanel debugPanel = new VerticalPanel();
-		debugPanel.add(debugLabel);
-		RootPanel.get("debug").add(debugPanel);
+		Log.debug("Outside of the try/catch block.....");
+
 	}
 }
