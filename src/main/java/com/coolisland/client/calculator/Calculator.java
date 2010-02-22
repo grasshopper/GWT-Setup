@@ -104,6 +104,11 @@ public class Calculator extends Composite {
 			@Override
 			public double performAction(ControlAction lastAction,
 					double previous, double current) {
+
+				Log.debug(this.getClass().getName()
+						+ "addPlusButton() previous: " + previous
+						+ " current: " + current);
+
 				return previous + current;
 			}
 		};
