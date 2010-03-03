@@ -1,39 +1,39 @@
-package com.coolisland.client.model;
+package com.coolisland.client.model.stack;
 
 import java.util.Stack;
 
-public class CalculatorStack<E> {
+public class CalculatorStack<T> {
 	// temp storage of our actual type
-	private final Class<E> clazz;
+	private final Class<T> clazz;
 
 	/*
 	 * a stack of operands or operations
 	 */
-	protected Stack<E> stack;
+	protected Stack<T> stack;
 
-	public CalculatorStack(Class<E> clazz) {
+	public CalculatorStack(Class<T> clazz) {
 		this.clazz = clazz;
-		stack = new Stack<E>();
+		stack = new Stack<T>();
 	}
 
 	public boolean empty() {
 		return stack.empty();
 	}
 
-	public E pop() {
+	public T pop() {
 		return stack.pop();
 	}
 
-	public void push(E value) {
+	public void push(T value) {
 		stack.push(value);
 	}
 
-	public E peek() {
+	public T peek() {
 		return stack.peek();
 	}
 
 	public void clear() {
-		stack = new Stack<E>();
+		stack = new Stack<T>();
 	}
 
 }

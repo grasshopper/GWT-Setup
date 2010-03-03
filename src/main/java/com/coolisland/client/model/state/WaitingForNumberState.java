@@ -1,8 +1,11 @@
-package com.coolisland.client.model;
+package com.coolisland.client.model.state;
 
-public class WaitingForOperationState extends State {
+import com.coolisland.client.model.Cpu;
+import com.coolisland.client.model.operation.Operation;
 
-	public WaitingForOperationState(Cpu cpu) {
+public class WaitingForNumberState extends State {
+
+	public WaitingForNumberState(Cpu cpu) {
 		super(cpu);
 	}
 
@@ -15,17 +18,20 @@ public class WaitingForOperationState extends State {
 		// reset the display register for new number
 		// display.reset();
 
-		// append the new digit
+		// add the new digit
 		display.addDigit(digit);
 
-		// allow the user to continue entering the number
 		return cpu.EnteringNumberState;
 	}
 
 	@Override
 	public State enterOperation(Operation op) {
-		// behavior is same as in EnteringNumberState
-		return cpu.EnteringNumberState.enterOperation(op);
+		// enter a state of a new operation
+		cpu.replaceOperation(op);
+
+		// FIXME: why would we stay in the current state?
+		// stay in this state
+		return this;
 	}
 
 	@Override
@@ -34,7 +40,6 @@ public class WaitingForOperationState extends State {
 		cpu.executeOperation(op);
 
 		// next state
-		return this;
+		return cpu.WaitingForOperationState;
 	}
-
 }

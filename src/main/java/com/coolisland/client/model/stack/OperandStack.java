@@ -1,7 +1,9 @@
-package com.coolisland.client.model;
+package com.coolisland.client.model.stack;
+
+import com.coolisland.client.model.Value;
 
 /**
- * Operation stack which operates on the operands
+ * Operand stack on which the operations execute
  * 
  * @author Silvio
  * 
@@ -14,9 +16,9 @@ package com.coolisland.client.model;
  *         http://www.objectsbydesign.com/projects/gpl.txt
  * 
  */
-public class OperationStack extends CalculatorStack<Operation> {
+public class OperandStack extends CalculatorStack<Value> {
 
-	public OperationStack() {
-		super(Operation.class);
+	public OperandStack() {
+		super(Value.class);
 	}
 }

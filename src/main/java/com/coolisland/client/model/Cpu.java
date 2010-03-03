@@ -2,6 +2,10 @@ package com.coolisland.client.model;
 
 import java.util.HashMap;
 
+import com.coolisland.client.model.operation.Operation;
+import com.coolisland.client.model.stack.OperandStack;
+import com.coolisland.client.model.stack.OperationStack;
+import com.coolisland.client.model.state.State;
 import com.google.gwt.dev.util.Memory;
 
 public class Cpu {
@@ -82,6 +86,14 @@ public class Cpu {
 
 	public OperandStack getOperandStack() {
 		return operandStack;
+	}
+
+	/**
+	 * updates the display
+	 */
+	public void setUpdateDisplay() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

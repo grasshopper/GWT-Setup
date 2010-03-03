@@ -15,7 +15,7 @@ public interface Value {
 	 */
 	public Value add(Value val);
 
-	public Value subtrack(Value val);
+	public Value subtract(Value val);
 
 	public Value multiply(Value val);
 

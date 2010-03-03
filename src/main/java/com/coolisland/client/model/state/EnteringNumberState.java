@@ -1,4 +1,7 @@
-package com.coolisland.client.model;
+package com.coolisland.client.model.state;
+
+import com.coolisland.client.model.Cpu;
+import com.coolisland.client.model.operation.Operation;
 
 public class EnteringNumberState extends State {
 
