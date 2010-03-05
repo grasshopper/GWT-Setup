@@ -2,11 +2,11 @@ package com.coolisland.client.model;
 
 import java.util.HashMap;
 
+import com.coolisland.client.model.operation.Memory;
 import com.coolisland.client.model.operation.Operation;
 import com.coolisland.client.model.stack.OperandStack;
 import com.coolisland.client.model.stack.OperationStack;
 import com.coolisland.client.model.state.State;
-import com.google.gwt.dev.util.Memory;
 
 public class Cpu {
 	private Memory memory;
@@ -94,6 +94,14 @@ public class Cpu {
 	public void setUpdateDisplay() {
 		// TODO Auto-generated method stub
 
+	}
+
+	/*
+	 * returns the Memory Register
+	 */
+	public Memory getMemoryRegister() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

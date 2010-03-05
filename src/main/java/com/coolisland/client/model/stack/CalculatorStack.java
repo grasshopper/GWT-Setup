@@ -28,6 +28,12 @@ public class CalculatorStack<T> {
 		stack.push(value);
 	}
 
+	/**
+	 * Return the object at the top of this stack without removing it from the
+	 * stack.
+	 * 
+	 * @return
+	 */
 	public T peek() {
 		return stack.peek();
 	}

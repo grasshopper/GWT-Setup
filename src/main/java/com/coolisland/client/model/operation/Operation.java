@@ -4,9 +4,20 @@ import com.coolisland.client.model.Cpu;
 import com.coolisland.client.model.stack.OperandStack;
 
 public abstract class Operation {
-	/*
+
+	/**
 	 * The precedence for operations. For example, unary operations have a
 	 * higher precedence than binary operations.
+	 * 
+	 * Unary operators have a High precedent.
+	 * 
+	 * Binary operators like +, -, *, / have a Low precedent.
+	 * 
+	 * Memory recall has the Highest precedent.
+	 * 
+	 * Memory clear, minus, and plus operations have the Lowest precedent.
+	 * 
+	 * @author Silvio
 	 */
 	public static enum Precedent {
 		HIGHEST(5), HIGH(4), MEDIUM(3), LOW(2), LOWEST(1);

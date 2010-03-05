@@ -4,7 +4,7 @@ import com.coolisland.client.model.Cpu;
 import com.coolisland.client.model.Value;
 
 /**
- * Binary Operations include functions like +, -, *, and /.
+ * Binary Operations include operations like +, -, *, and /.
  * 
  * Binary operations require a second operand.
  * 
@@ -12,6 +12,7 @@ import com.coolisland.client.model.Value;
  * 
  */
 public abstract class BinaryOperation extends Operation {
+
 	public BinaryOperation() {
 		super.setLookahead(true);
 	}

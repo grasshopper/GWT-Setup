@@ -24,27 +24,26 @@ public interface Value {
 	/*
 	 * unary operators
 	 */
-	public Value negate(Value val);
+	// returns the negated version of this object
+	public Value negate();
 
-	public Value squareRoot(Value val);
+	// returns the square root of this object
+	public Value squareRoot();
 
 	public Value inverse(Value val);
 
 	public Value percent(Value val);
 
-	/*
-	 * append a digit to the current number
-	 */
+	// returns the inverse of this object (1/x)
+	public Value inverse();
+
+	// append a digit to the current number
 	public Value addDigit(String number, String digit);
 
-	/**
-	 * @return number of characters in value
-	 */
+	// returns number of characters in value
 	public int length();
 
-	/**
-	 * @return String version of value
-	 */
+	// returns String version of this object
 	public String toString();
 
 }
