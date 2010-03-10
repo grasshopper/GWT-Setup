@@ -1,11 +1,13 @@
 package com.coolisland.client.model;
 
+import com.coolisland.client.model.values.Value;
+
 public class Display extends Register {
 	// max number of digits we can handle
 	private final int MAX_LENGTH = 14;
 
 	// the display value... start with a value of 0
-	String displayNumber = "0";
+	private String displayNumber = "0";
 
 	/**
 	 * Constructs the calculator display control with the specified initial
@@ -55,9 +57,19 @@ public class Display extends Register {
 		displayNumber = value.toString();
 	}
 
-	// we should not need to over-ride clear() since we aren't doing anything different.
-//	@Override
-//	public void clear() {
-//		super.clear();
-//	}
+	/**
+	 * Creates a Value representation of the display
+	 * 
+	 * @return Value representation of the display
+	 */
+	public Value createValue() {
+		return super.getValue();
+	}
+
+	// we should not need to over-ride clear() since we aren't doing anything
+	// different.
+	// @Override
+	// public void clear() {
+	// super.clear();
+	// }
 }

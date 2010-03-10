@@ -29,7 +29,7 @@ public class WaitingForInputState extends State {
 		display.addDigit(digit);
 
 		// move to the next state
-		return cpu.EnteringNumberState;
+		return cpu.enteringNumberState;
 	}
 
 	@Override
@@ -45,10 +45,10 @@ public class WaitingForInputState extends State {
 
 		if (!op.getLookahead()) {
 			// can't lookahead... move to the WaitingForInput state
-			return cpu.WaitingForInputState;
+			return cpu.waitingForInputState;
 		} else {
 			// wait for a number
-			return cpu.WaitingForNumberState;
+			return cpu.waitingForNumberState;
 		}
 	}
 

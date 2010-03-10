@@ -22,13 +22,13 @@ public class WaitingForOperationState extends State {
 		display.addDigit(digit);
 
 		// allow the user to continue entering the number
-		return cpu.EnteringNumberState;
+		return cpu.enteringNumberState;
 	}
 
 	@Override
 	public State enterOperation(Operation op) {
 		// behavior is same as in EnteringNumberState
-		return cpu.EnteringNumberState.enterOperation(op);
+		return cpu.enteringNumberState.enterOperation(op);
 	}
 
 	@Override

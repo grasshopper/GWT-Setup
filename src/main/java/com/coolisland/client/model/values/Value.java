@@ -1,4 +1,4 @@
-package com.coolisland.client.model;
+package com.coolisland.client.model.values;
 
 /**
  * Represents values that the calculator displays and operates on.
@@ -30,20 +30,20 @@ public interface Value {
 	// returns the square root of this object
 	public Value squareRoot();
 
-	public Value inverse(Value val);
-
-	public Value percent(Value val);
-
 	// returns the inverse of this object (1/x)
 	public Value inverse();
 
 	// append a digit to the current number
-	public Value addDigit(String number, String digit);
-
-	// returns number of characters in value
-	public int length();
+	public String addDigit(String number, String digit);
 
 	// returns String version of this object
 	public String toString();
 
+	/*
+	 * returns the length of the value. Can be used to determine if any more
+	 * characters can be appended to the display.
+	 */
+	public int length();
+
+	public Value create(String string);
 }

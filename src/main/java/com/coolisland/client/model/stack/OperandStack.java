@@ -1,6 +1,6 @@
 package com.coolisland.client.model.stack;
 
-import com.coolisland.client.model.Value;
+import com.coolisland.client.model.values.Value;
 
 /**
  * Operand stack on which the operations execute

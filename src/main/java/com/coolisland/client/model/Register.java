@@ -2,6 +2,8 @@ package com.coolisland.client.model;
 
 import java.util.Observable;
 
+import com.coolisland.client.model.values.Value;
+
 public class Register extends Observable {
 	// the current value of the register
 	private Value value;

@@ -29,10 +29,10 @@ public class EnteringNumberState extends State {
 		// don't look ahead... go to WaitingForInput
 		if (!op.getLookahead()) {
 			// don't look ahead... move to the WaitingForInputState state
-			return cpu.WaitingForInputState;
+			return cpu.waitingForInputState;
 		} else {
 			// look ahead... move to the WaitingForNumber state
-			return cpu.WaitingForNumberState;
+			return cpu.waitingForNumberState;
 		}
 	}
 

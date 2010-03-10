@@ -1,7 +1,7 @@
 package com.coolisland.client.model.operation;
 
 import com.coolisland.client.model.Cpu;
-import com.coolisland.client.model.Value;
+import com.coolisland.client.model.values.Value;
 
 public abstract class UnaryOperation extends Operation {
 

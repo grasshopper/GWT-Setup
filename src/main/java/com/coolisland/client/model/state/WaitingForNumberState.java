@@ -21,7 +21,7 @@ public class WaitingForNumberState extends State {
 		// add the new digit
 		display.addDigit(digit);
 
-		return cpu.EnteringNumberState;
+		return cpu.enteringNumberState;
 	}
 
 	@Override
@@ -40,6 +40,6 @@ public class WaitingForNumberState extends State {
 		cpu.executeOperation(op);
 
 		// next state
-		return cpu.WaitingForOperationState;
+		return cpu.waitingForOperationState;
 	}
 }
