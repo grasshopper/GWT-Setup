@@ -1,12 +1,11 @@
 package com.coolisland.client.model;
 
-import java.lang.reflect.Constructor;
 import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
 
 import com.coolisland.client.commands.OperandCommand;
 import com.coolisland.client.commands.OperationCommand;
+import com.coolisland.client.java.utils.Observable;
+import com.coolisland.client.java.utils.Observer;
 import com.coolisland.client.model.operation.Memory;
 import com.coolisland.client.model.operation.Operation;
 import com.coolisland.client.model.operation.Operation.Precedent;
@@ -17,7 +16,7 @@ import com.coolisland.client.model.state.State;
 import com.coolisland.client.model.state.WaitingForInputState;
 import com.coolisland.client.model.state.WaitingForNumberState;
 import com.coolisland.client.model.state.WaitingForOperationState;
-import com.coolisland.client.model.values.DecimalValue;
+import com.coolisland.client.model.values.IntegerValue;
 import com.coolisland.client.model.values.Value;
 
 public class Cpu extends Observable {
@@ -61,7 +60,7 @@ public class Cpu extends Observable {
 	 * 
 	 */
 	public Cpu() {
-		Value initialValue = new DecimalValue(0);
+		Value initialValue = new IntegerValue(0);
 		operandStack = new OperandStack();
 		operationStack = new OperationStack();
 		memory = new Memory(initialValue);
@@ -141,21 +140,23 @@ public class Cpu extends Observable {
 	private Operation findOperation(String operation) {
 		String model = "com.objectsbydesign.calc.model";
 		Operation op = null;
-		Constructor<?> constructor = null;
-
-		try {
-			// check the operation cache first
-			op = operationMap.get(operation);
-			if (op == null) {
-				// create an instance of the operation
-				Class<?> klass = Class.forName(model + "." + operation);
-				constructor = klass.getDeclaredConstructor(null);
-				op = (Operation) constructor.newInstance(null);
-				operationMap.put(operation, op);
-			}
-		} catch (Exception ex) {
-			System.out.println(ex.toString());
-		}
+		// FIXME: java.util.reflect.Constructor does not appear to be supported
+		// by GWT
+		// Constructor<?> constructor = null;
+		//
+		// try {
+		// // check the operation cache first
+		// op = operationMap.get(operation);
+		// if (op == null) {
+		// // create an instance of the operation
+		// Class<?> klass = Class.forName(model + "." + operation);
+		// constructor = klass.getDeclaredConstructor(null);
+		// op = (Operation) constructor.newInstance(null);
+		// operationMap.put(operation, op);
+		// }
+		// } catch (Exception ex) {
+		// System.out.println(ex.toString());
+		// }
 
 		return op;
 	}

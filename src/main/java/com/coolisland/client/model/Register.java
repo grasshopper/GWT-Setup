@@ -1,7 +1,6 @@
 package com.coolisland.client.model;
 
-import java.util.Observable;
-
+import com.coolisland.client.java.utils.Observable;
 import com.coolisland.client.model.values.Value;
 
 public class Register extends Observable {

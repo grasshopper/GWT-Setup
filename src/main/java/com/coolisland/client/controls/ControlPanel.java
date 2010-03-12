@@ -2,12 +2,14 @@ package com.coolisland.client.controls;
 
 import com.coolisland.client.calculator.Calculator;
 import com.coolisland.client.calculator.ControlAction;
+import com.coolisland.client.model.Cpu;
 import com.coolisland.client.utils.Log;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ControlPanel {
 	Grid controlsPanel = new Grid(4, 2);
+	Cpu cpu = null;
 
 	public ControlPanel(Calculator calculator) {
 		initControlPad(calculator);
