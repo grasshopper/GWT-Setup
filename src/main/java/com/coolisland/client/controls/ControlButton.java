@@ -1,9 +1,10 @@
 /**
  * 
  */
-package com.coolisland.client.calculator;
+package com.coolisland.client.controls;
 
-import com.coolisland.client.controls.CalculatorButton;
+import com.coolisland.client.calculator.Calculator;
+import com.coolisland.client.calculator.ControlAction;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Widget;
 

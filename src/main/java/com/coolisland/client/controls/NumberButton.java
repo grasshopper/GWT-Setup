@@ -1,6 +1,6 @@
-package com.coolisland.client.calculator;
+package com.coolisland.client.controls;
 
-import com.coolisland.client.controls.CalculatorButton;
+import com.coolisland.client.calculator.Calculator;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -24,7 +24,7 @@ public class NumberButton extends CalculatorButton implements ClickListener {
 	}
 
 	public void onClick(Widget sender) {
-		calculator.digitAction(value);
+		calculator.enterDigit(value);
 	}
 
 }
