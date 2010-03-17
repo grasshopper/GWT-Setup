@@ -4,10 +4,12 @@ import com.coolisland.client.calculator.Calculator;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.Widget;
 
-public class NumberPanel {
+public class NumberPanel extends Widget {
 	Grid numbersPanel = new Grid(4, 3);
 
 	public NumberPanel(Calculator calculator) {
+		System.out.println("Starting " + this.getClass().getName());
+
 		initNumberPad(calculator);
 	}
 

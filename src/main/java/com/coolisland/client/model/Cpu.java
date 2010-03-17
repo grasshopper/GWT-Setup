@@ -60,18 +60,32 @@ public class Cpu extends Observable {
 	 * 
 	 */
 	public Cpu() {
+		System.out.println("Starting constructor for "
+				+ this.getClass().getName());
+
 		Value initialValue = new IntegerValue(0);
+
+		System.out.println("Going to initialize the stacks");
 		operandStack = new OperandStack();
 		operationStack = new OperationStack();
+
+		System.out.println("Going to initialize the memory");
 		memory = new Memory(initialValue);
+
+		System.out.println("Going to initialize the display");
 		display = new Display(initialValue);
 		displayUpdate = false;
 		operationMap = new HashMap<String, Operation>();
+
+		System.out.println("Going to initialize the states");
 		initializeStates();
 
 		// set the initial state
 		loadOperand(initialValue);
 		setState(waitingForInputState);
+
+		System.out.println("Finished constructor for "
+				+ this.getClass().getName());
 	}
 
 	/**

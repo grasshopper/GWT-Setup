@@ -7,11 +7,11 @@ import com.coolisland.client.utils.Log;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ControlPanel {
+public class OperationPanel extends Widget {
 	Grid controlsPanel = new Grid(4, 2);
 	Cpu cpu = null;
 
-	public ControlPanel(Calculator calculator) {
+	public OperationPanel(Calculator calculator) {
 		initControlPad(calculator);
 	}
 

@@ -10,10 +10,16 @@ public class IntegerValue implements Value {
 	 *            - the value to create the DecimalValue from
 	 */
 	public IntegerValue(String value) {
+		System.out.println("Starting constructor for "
+				+ this.getClass().getName());
+
 		this.value = new Integer(value);
 	}
 
 	public IntegerValue(int i) {
+		System.out.println("Starting constructor for "
+				+ this.getClass().getName());
+
 		this.value = new Integer(value);
 	}
 

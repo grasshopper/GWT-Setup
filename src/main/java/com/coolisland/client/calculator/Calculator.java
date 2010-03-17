@@ -1,7 +1,9 @@
 package com.coolisland.client.calculator;
 
-import com.coolisland.client.controls.ControlPanel;
 import com.coolisland.client.controls.NumberPanel;
+import com.coolisland.client.controls.OperationPanel;
+import com.coolisland.client.java.utils.Observer;
+import com.coolisland.client.model.Cpu;
 import com.coolisland.client.utils.CalculatorDisplay;
 import com.coolisland.client.utils.Log;
 import com.google.gwt.i18n.client.NumberFormat;
@@ -10,10 +12,11 @@ import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
 public class Calculator extends Composite {
+	private final Cpu cpu = null;
 
-	DockPanel dockPanel = new DockPanel();
-	ControlPanel controlsPanel = null;
-	NumberPanel numbersPanel = null;
+	private final DockPanel dockPanel;
+	private final OperationPanel controlsPanel;
+	private final NumberPanel numbersPanel;
 	private final CalculatorDisplay calculatorDisplay;
 
 	private static final NumberFormat nf = NumberFormat.getDecimalFormat()
@@ -27,13 +30,23 @@ public class Calculator extends Composite {
 	 * 
 	 */
 	public Calculator() {
+		/*
+		 * initialize the model objects
+		 */
+		// cpu = new Cpu();
+
+		/*
+		 * initialize the view objects
+		 */
+		dockPanel = new DockPanel();
+
 		calculatorDisplay = new CalculatorDisplay("");
 		dockPanel.add(calculatorDisplay, DockPanel.NORTH);
 
 		numbersPanel = new NumberPanel(this);
 		dockPanel.add(numbersPanel.getPanel(), DockPanel.CENTER);
 
-		controlsPanel = new ControlPanel(this);
+		controlsPanel = new OperationPanel(this);
 		dockPanel.add(controlsPanel.getPanel(), DockPanel.EAST);
 
 		HorizontalPanel mainP = new HorizontalPanel();
@@ -139,5 +152,21 @@ public class Calculator extends Composite {
 		}
 
 		calculatorDisplay.setText(calculatorDisplay.getText() + value);
+	}
+
+	/**
+	 * 
+	 * @param observer
+	 */
+	public void addDisplayObserver(Observer observer) {
+		cpu.addDisplayObserver(observer);
+	}
+
+	/**
+	 * 
+	 * @param observer
+	 */
+	public void addMemoryObserver(Observer observer) {
+		cpu.addMemoryObserver(observer);
 	}
 }
