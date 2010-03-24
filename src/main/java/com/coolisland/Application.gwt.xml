@@ -4,6 +4,9 @@
       <!-- Inherit the core Web Toolkit stuff.                        -->
       <inherits name='com.google.gwt.user.User'/>
 
+		<!-- Inherit the smart GWT stuff.                        -->
+      <inherits name="com.smartgwt.SmartGwt"/>
+
       <!--  inherit css based theme -->
       <inherits name='com.google.gwt.user.theme.standard.Standard'/>
 

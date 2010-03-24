@@ -6,6 +6,8 @@ public class CalculatorDisplay extends TextBox {
 	private static final int MAXDIGITS = 16;
 
 	public CalculatorDisplay(String displayString) {
+		Log.debug("Starting " + this.getClass().getName()
+				+ " Contsructor. displayString: " + displayString);
 		/*
 		 * set control properties
 		 */

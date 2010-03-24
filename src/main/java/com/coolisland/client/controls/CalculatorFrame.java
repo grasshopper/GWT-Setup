@@ -66,4 +66,12 @@ public class CalculatorFrame extends Window {
 		// requestFocus();
 	}
 
+	public void setText(String displayResult) {
+		display.setDisplay(displayResult);
+	}
+
+	public String getText() {
+		return display.getDisplay();
+	}
+
 }

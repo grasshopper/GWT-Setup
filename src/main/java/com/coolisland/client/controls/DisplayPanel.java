@@ -31,4 +31,8 @@ public class DisplayPanel extends Widget implements Observer {
 		setDisplay((String) object);
 	}
 
+	public String getDisplay() {
+		return displayField.getText();
+	}
+
 }

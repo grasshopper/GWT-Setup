@@ -1,6 +1,7 @@
 package com.coolisland.client.controls;
 
 import com.coolisland.client.calculator.Calculator;
+import com.coolisland.client.utils.Log;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -11,6 +12,10 @@ public class NumberButton extends CalculatorButton implements ClickListener {
 	public NumberButton(Calculator calculator, String value) {
 		// set the button's label
 		super(value);
+
+		Log.debug("Starting " + this.getClass().getName()
+				+ "Constructor. Calculator: " + calculator.toString()
+				+ " value: " + value);
 
 		this.value = value;
 		this.calculator = calculator;
@@ -24,6 +29,10 @@ public class NumberButton extends CalculatorButton implements ClickListener {
 	}
 
 	public void onClick(Widget sender) {
+		Log.debug("Starting " + this.getClass().getName()
+				+ ".onClick(). calculator: " + calculator.toString()
+				+ " value: " + value + " sender: " + sender.toString());
+
 		calculator.enterDigit(value);
 	}
 

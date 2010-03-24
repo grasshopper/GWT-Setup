@@ -1,19 +1,18 @@
 package com.coolisland.client.model.values;
 
-import java.math.BigDecimal;
 
 public class DecimalValue implements Value {
-	protected BigDecimal value;
-	private static BigDecimal one;
-	private static BigDecimal hundred;
-	private static BigDecimal zero;
+	// protected BigDecimal value;
+	// private static BigDecimal one;
+	// private static BigDecimal hundred;
+	// private static BigDecimal zero;
 
 	private static final int SCALE = 10;
 
 	static {
-		one = new BigDecimal(1.0);
-		hundred = new BigDecimal(100.0);
-		zero = new BigDecimal(0.0);
+		// one = new BigDecimal(1.0);
+		// hundred = new BigDecimal(100.0);
+		// zero = new BigDecimal(0.0);
 	}
 
 	/**
@@ -23,7 +22,7 @@ public class DecimalValue implements Value {
 	 *            - the value to create the DecimalValue from
 	 */
 	public DecimalValue(String value) {
-		this.value = new BigDecimal(value);
+		// this.value = new BigDecimal(value);
 	}
 
 	/**
@@ -32,9 +31,9 @@ public class DecimalValue implements Value {
 	 * @param value
 	 *            - the value to create the DecimalValue from
 	 */
-	public DecimalValue(BigDecimal value) {
-		this.value = value;
-	}
+	// public DecimalValue(BigDecimal value) {
+	// // this.value = value;
+	// }
 
 	/**
 	 * Creates a DecimalValue from the double value passed in
@@ -43,8 +42,8 @@ public class DecimalValue implements Value {
 	 *            - the value to create the DecimalValue from
 	 */
 	public DecimalValue(double value) {
-		this.value = new BigDecimal(value);
-		this.value = this.value.setScale(SCALE, BigDecimal.ROUND_UP);
+		// this.value = new BigDecimal(value);
+		// this.value = this.value.setScale(SCALE, BigDecimal.ROUND_UP);
 
 	}
 
@@ -70,16 +69,16 @@ public class DecimalValue implements Value {
 	 * @return the sum of val and this object
 	 */
 	public Value add(Value val) {
-		if (val instanceof DecimalValue) {
-			DecimalValue decimalVal = (DecimalValue) val;
-
-			BigDecimal result = value.add(decimalVal.value);
-			return new DecimalValue(result);
-		} else {
-			System.err
-					.println("Arithmetic Error - divisor is not of type DecimalValue");
-			return this;
-		}
+		// if (val instanceof DecimalValue) {
+		// DecimalValue decimalVal = (DecimalValue) val;
+		//
+		// BigDecimal result = value.add(decimalVal.value);
+		// return new DecimalValue(result);
+		// } else {
+		// System.err
+		// .println("Arithmetic Error - divisor is not of type DecimalValue");
+		return this;
+		// }
 	}
 
 	/**
@@ -93,16 +92,16 @@ public class DecimalValue implements Value {
 	 * @return this minus val
 	 */
 	public Value subtract(Value val) {
-		if (val instanceof DecimalValue) {
-			DecimalValue decimalVal = (DecimalValue) val;
-
-			BigDecimal result = value.subtract(decimalVal.value);
-			return new DecimalValue(result);
-		} else {
-			System.err
-					.println("Arithmetic Error - divisor is not of type DecimalValue");
-			return this;
-		}
+		// if (val instanceof DecimalValue) {
+		// DecimalValue decimalVal = (DecimalValue) val;
+		//
+		// BigDecimal result = value.subtract(decimalVal.value);
+		// return new DecimalValue(result);
+		// } else {
+		// System.err
+		// .println("Arithmetic Error - divisor is not of type DecimalValue");
+		return this;
+		// }
 	}
 
 	/**
@@ -116,16 +115,16 @@ public class DecimalValue implements Value {
 	 * @return this * val
 	 */
 	public Value multiply(Value val) {
-		if (val instanceof DecimalValue) {
-			DecimalValue decimalVal = (DecimalValue) val;
-
-			BigDecimal result = value.multiply(decimalVal.value);
-			return new DecimalValue(result);
-		} else {
-			System.err
-					.println("Arithmetic Error - divisor is not of type DecimalValue");
-			return this;
-		}
+		// if (val instanceof DecimalValue) {
+		// DecimalValue decimalVal = (DecimalValue) val;
+		//
+		// BigDecimal result = value.multiply(decimalVal.value);
+		// return new DecimalValue(result);
+		// } else {
+		// System.err
+		// .println("Arithmetic Error - divisor is not of type DecimalValue");
+		return this;
+		// }
 	}
 
 	/**
@@ -139,34 +138,34 @@ public class DecimalValue implements Value {
 	 * @return this divided by val
 	 */
 	public Value divide(Value val) {
-		BigDecimal result = null;
-
-		if (val instanceof DecimalValue) {
-			DecimalValue decimalVal = (DecimalValue) val;
-
-			// protect from divide by zero
-			if (decimalVal.equals(zero)) {
-				// in case of divide by zero, report the error and return
-				// the current value
-				System.err.println("Arithmetic Error - divide by zero");
-				return this;
-			} else {
-				try {
-					result = value.divide(decimalVal.value, SCALE,
-							BigDecimal.ROUND_UP);
-				} catch (ArithmeticException e) {
-					// in case of divide by zero, report the error and return
-					// the current value
-					System.err.println("Arithmetic Error - divide by zero");
-					return this;
-				}
-				return new DecimalValue(result);
-			}
-		} else {
-			System.err
-					.println("Arithmetic Error - divisor is not of type DecimalValue");
-			return this;
-		}
+		// BigDecimal result = null;
+		//		
+		// if (val instanceof DecimalValue) {
+		// DecimalValue decimalVal = (DecimalValue) val;
+		//
+		// // protect from divide by zero
+		// if (decimalVal.equals(zero)) {
+		// // in case of divide by zero, report the error and return
+		// // the current value
+		// System.err.println("Arithmetic Error - divide by zero");
+		// return this;
+		// } else {
+		// try {
+		// result = value.divide(decimalVal.value, SCALE,
+		// BigDecimal.ROUND_UP);
+		// } catch (ArithmeticException e) {
+		// // in case of divide by zero, report the error and return
+		// // the current value
+		// System.err.println("Arithmetic Error - divide by zero");
+		// return this;
+		// }
+		// return new DecimalValue(result);
+		// }
+		// } else {
+		// System.err
+		// .println("Arithmetic Error - divisor is not of type DecimalValue");
+		return this;
+		// }
 	}
 
 	/**
@@ -175,9 +174,11 @@ public class DecimalValue implements Value {
 	 * @return the square root of this object
 	 */
 	public Value squareRoot() {
-		double result = value.doubleValue();
-		result = Math.sqrt(result);
-		return new DecimalValue(result);
+		// double result = value.doubleValue();
+		// result = Math.sqrt(result);
+		// return new DecimalValue(result);
+		//		
+		return null;
 	}
 
 	/**
@@ -186,25 +187,27 @@ public class DecimalValue implements Value {
 	 * @return inverse of this object
 	 */
 	public Value inverse() {
-		BigDecimal result = null;
+		// BigDecimal result = null;
+		//
+		// // protect from divide by zero
+		// if (value.equals(zero)) {
+		// // in case of divide by zero, report the error and return
+		// // the current value
+		// System.err.println("Arithmetic Error - divide by zero");
+		// return this;
+		// } else {
+		// try {
+		// result = one.divide(value, SCALE, BigDecimal.ROUND_UP);
+		// } catch (ArithmeticException e) {
+		// // in case of divide by zero, report the error and return
+		// // the current value
+		// System.err.println("Arithmetic Error - divide by zero");
+		// return this;
+		// }
+		// return new DecimalValue(result);
+		// }
 
-		// protect from divide by zero
-		if (value.equals(zero)) {
-			// in case of divide by zero, report the error and return
-			// the current value
-			System.err.println("Arithmetic Error - divide by zero");
-			return this;
-		} else {
-			try {
-				result = one.divide(value, SCALE, BigDecimal.ROUND_UP);
-			} catch (ArithmeticException e) {
-				// in case of divide by zero, report the error and return
-				// the current value
-				System.err.println("Arithmetic Error - divide by zero");
-				return this;
-			}
-			return new DecimalValue(result);
-		}
+		return null;
 	}
 
 	/**
@@ -213,7 +216,8 @@ public class DecimalValue implements Value {
 	 * @return the negative value of this object
 	 */
 	public Value negate() {
-		return new DecimalValue(value.negate());
+		// return new DecimalValue(value.negate());
+		return null;
 	}
 
 	/**
@@ -260,33 +264,38 @@ public class DecimalValue implements Value {
 	 * @return value of this object divided by 100
 	 */
 	public Value percent() {
-		BigDecimal result = value.divide(hundred, SCALE, BigDecimal.ROUND_UP);
-		return new DecimalValue(result);
+		// BigDecimal result = value.divide(hundred, SCALE,
+		// BigDecimal.ROUND_UP);
+		// return new DecimalValue(result);
+
+		return null;
 	}
 
 	@Override
 	public String toString() {
-		String returnStr = value.toString();
+		// String returnStr = value.toString();
+		//
+		// int i;
+		//
+		// /*
+		// * If the number does not have a decimal point, then append a decimal
+		// * point to the end of the number. If the number does have a decimal
+		// * point, then trim the zeros after the decimal point.
+		// */
+		// if (returnStr.indexOf('.') != -1) {
+		// for (i = returnStr.length(); i > 0; i--) {
+		// if (returnStr.charAt(i - 1) != '0') {
+		// break;
+		// }
+		// }
+		// returnStr = returnStr.substring(0, i);
+		// } else {
+		// returnStr += ".";
+		// }
+		//
+		// return returnStr;
 
-		int i;
-
-		/*
-		 * If the number does not have a decimal point, then append a decimal
-		 * point to the end of the number. If the number does have a decimal
-		 * point, then trim the zeros after the decimal point.
-		 */
-		if (returnStr.indexOf('.') != -1) {
-			for (i = returnStr.length(); i > 0; i--) {
-				if (returnStr.charAt(i - 1) != '0') {
-					break;
-				}
-			}
-			returnStr = returnStr.substring(0, i);
-		} else {
-			returnStr += ".";
-		}
-
-		return returnStr;
+		return null;
 	}
 
 	/**

@@ -26,8 +26,9 @@ public class Application implements EntryPoint {
 					.debug("We made it to com.coolisland.client.Application.onModuleLoad()");
 
 			// display the calculator
-			Calculator calc = new Calculator();
-			RootPanel.get("calculator").add(calc);
+			Calculator calculator = new Calculator();
+			calculator.initialize();
+			RootPanel.get("calculator").add(calculator);
 
 			// hide the loading message
 			RootPanel.get("loading").setVisible(false);

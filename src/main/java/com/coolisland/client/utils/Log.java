@@ -1,7 +1,9 @@
 package com.coolisland.client.utils;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -15,6 +17,20 @@ public class Log {
 	 * @param msg
 	 */
 	public static void debug(String msg) {
+		String dateFormatPattern = "E H:mm:ss:SSS a";
+
+		DateTimeFormat formatter = DateTimeFormat.getFormat(dateFormatPattern);
+
+		// com.google.gwt.i18n.client.DateTimeFormat.formatter = new
+		// DateTimeFormat(
+		// dateFormatPattern);
+		// // SimpleDateFormat formatter = new
+		// SimpleDateFormat(dateFormatPattern);
+
+		msg = formatter.format(new Date()) + " - " + msg;
+
+		Date now = new Date();
+
 		debugMessages.add(msg);
 
 		displayDebugMessages();
